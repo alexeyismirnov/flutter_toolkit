@@ -1,7 +1,4 @@
 library flutter_toolkit;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:flutter_toolkit/app_theme.dart';
+export 'package:flutter_toolkit/config_param.dart';
