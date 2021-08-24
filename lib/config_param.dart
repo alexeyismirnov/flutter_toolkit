@@ -6,7 +6,7 @@ import 'package:flutter_toolkit/app_theme.dart';
 
 class ConfigParam<T> {
   static SharedPreferences prefs;
-  static var fontSize, bgcolor;
+  static var fontSize, bgcolor, langSelected;
 
   String prefKey;
 
@@ -20,6 +20,8 @@ class ConfigParam<T> {
             Brightness.dark
             ? ThemeType.dark
             : ThemeType.parchment);
+
+    langSelected = ConfigParam<bool>('lang_init', initValue: false);
   }
 
   ConfigParam(this.prefKey, {T initValue}) {
