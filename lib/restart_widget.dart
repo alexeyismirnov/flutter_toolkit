@@ -38,7 +38,7 @@ class _RestartWidgetState extends State<RestartWidget> {
       locale: context.locale,
       title: "title".tr(),
       home: widget.content,
-      theme: AppTheme.getThemeData(),
+      theme: AppTheme.getThemeData(context),
       debugShowCheckedModeBanner: false,
     );
   }

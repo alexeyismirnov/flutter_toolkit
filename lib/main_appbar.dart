@@ -33,6 +33,8 @@ class MainAppbar extends StatelessWidget {
                 title: Text('bg_color').tr()))));
 
     return PopupMenuButton<String>(
+        icon: Icon(Icons.arrow_circle_down,
+            color: Theme.of(context).textTheme.bodyText1.color),
         itemBuilder: (_) => contextMenu,
         onSelected: (action) {
           switch (action) {
