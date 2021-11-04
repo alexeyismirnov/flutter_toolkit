@@ -11,10 +11,14 @@ class AppTheme {
       case ThemeType.parchment:
         return ThemeData(
             appBarTheme: AppBarTheme(
+                iconTheme: IconThemeData(
+                  color: Colors.black, //change your color here
+                ),
                 titleTextStyle: Theme.of(context).textTheme.headline6?.copyWith(
                       color: Colors.black,
                     ),
                 backgroundColor: const Color(0xffe9c79a)),
+
             brightness: Brightness.light,
             cardColor: Colors.orange.shade50,
             dialogBackgroundColor: Colors.orange.shade50,
@@ -25,6 +29,9 @@ class AppTheme {
       case ThemeType.bright:
         return ThemeData(
             appBarTheme: AppBarTheme(
+                iconTheme: IconThemeData(
+                  color: Colors.black, //change your color here
+                ),
                 titleTextStyle: Theme.of(context).textTheme.headline6?.copyWith(
                       color: Colors.black,
                     ),
