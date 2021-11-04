@@ -12,6 +12,8 @@ dependencies:
   easy_localization: ^3.0.0
   shared_preferences: any
   auto_size_text: ^2.1.0
+  firebase_core: ^1.5.0
+  firebase_analytics: ^8.3.4
 
 dev_dependencies:
   flutter_test:
