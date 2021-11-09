@@ -11,43 +11,42 @@ class MainAppbar extends StatelessWidget {
   final bool showActions;
   final String title;
   final int maxLines;
+  final List<PopupMenuEntry> extraActions;
 
   MainAppbar(
-      {this.showActions = true, this.title = "title", this.maxLines = 2});
+      {this.showActions = true,
+      this.title = "title",
+      this.maxLines = 2,
+      this.extraActions = const []});
 
   Widget _getActions(BuildContext context) {
-    List<PopupMenuEntry<String>> contextMenu = [];
+    List<PopupMenuEntry> contextMenu = [
+      PopupMenuItem(
+          child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+                AppLangDialog().show(context);
+              },
+              child: ListTile(
+                  leading: const Icon(Icons.translate, size: 30.0),
+                  title: Text('language').tr()))),
+      PopupMenuItem(
+          child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+                AppThemeDialog().show(context);
+              },
+              child: ListTile(
+                  leading: const Icon(Icons.color_lens, size: 30.0),
+                  title: Text('bg_color').tr())))
+    ];
 
-    contextMenu.add(PopupMenuItem(
-        value: 'language',
-        child: Container(
-            child: ListTile(
-                leading: const Icon(Icons.translate, size: 30.0),
-                title: Text('language').tr()))));
+    contextMenu.addAll(extraActions);
 
-    contextMenu.add(PopupMenuItem(
-        value: 'bg_color',
-        child: Container(
-            child: ListTile(
-                leading: const Icon(Icons.color_lens, size: 30.0),
-                title: Text('bg_color').tr()))));
-
-    return PopupMenuButton<String>(
-        icon: Icon(Icons.arrow_circle_down),
-        itemBuilder: (_) => contextMenu,
-        onSelected: (action) {
-          switch (action) {
-            case 'language':
-              AppLangDialog().show(context);
-              break;
-
-            case 'bg_color':
-              AppThemeDialog().show(context);
-              break;
-            default:
-              break;
-          }
-        });
+    return PopupMenuButton(
+      icon: Icon(Icons.arrow_circle_down),
+      itemBuilder: (_) => contextMenu,
+    );
   }
 
   @override
