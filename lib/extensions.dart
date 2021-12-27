@@ -19,6 +19,11 @@ extension ShowWidget on Widget {
         builder: (context) => this,
       ));
 
+  Future pushReplacement(BuildContext context) =>
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => this,
+      ));
+
   Future<T> show<T>(BuildContext context, {canDismiss = true}) => showDialog<T>(
       barrierDismissible: canDismiss, context: context, builder: (_) => this);
 }

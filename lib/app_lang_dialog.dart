@@ -4,7 +4,7 @@ import 'restart_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class AppLangDialog extends StatelessWidget {
-  final labels = ['English', 'Русский', '简体中文', '正體中文'];
+  final labels = ['English', 'Русский', '简体中文', '繁體中文'];
   final locales = [
     Locale('en', ''),
     Locale('ru', ''),
