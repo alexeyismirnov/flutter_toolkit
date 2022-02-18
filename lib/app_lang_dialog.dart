@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
-import 'restart_widget.dart';
-
 import 'package:easy_localization/easy_localization.dart';
 
+import 'dart:core';
+import 'package:collection/collection.dart';
+
+import 'restart_widget.dart';
+
 class AppLangDialog extends StatelessWidget {
-  final labels = ['English', 'Русский', '简体中文', '繁體中文'];
-  final locales = [
-    Locale('en', ''),
-    Locale('ru', ''),
-    Locale('zh', 'CN'),
-    Locale('zh', 'HK')
-  ];
+  final List<String> labels;
+  final List<Locale> locales;
+
+  static List<Locale> getLocales(List<String> labels) {
+    var locales = <Locale>[];
+
+    if (labels.contains("English")) locales.add(Locale('en', ''));
+    if (labels.contains("Русский")) locales.add(Locale('ru', ''));
+    if (labels.contains("简体中文")) locales.add(Locale('zh', 'CN'));
+    if (labels.contains("繁體中文")) locales.add(Locale('zh', 'HK'));
+
+    return locales;
+  }
+
+  AppLangDialog({this.labels = const ['English', 'Русский', '简体中文', '繁體中文']})
+      : locales = AppLangDialog.getLocales(labels);
 
   Widget _getListItem(BuildContext context, int index) => CheckboxListTile(
       title: Text(labels[index]),
@@ -35,18 +47,18 @@ class AppLangDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Container(
-                    padding: EdgeInsets.only(bottom: 20.0, top: 10.0),
-                    child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Text('language'.tr().toUpperCase(),
-                              style: Theme.of(context).textTheme.button)
-                        ])),
-                _getListItem(context, 0),
-                _getListItem(context, 1),
-                _getListItem(context, 2),
-                _getListItem(context, 3),
-              ])));
+                    Container(
+                        padding: EdgeInsets.only(bottom: 20.0, top: 10.0),
+                        child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text('language'.tr().toUpperCase(),
+                                  style: Theme.of(context).textTheme.button)
+                            ])),
+                  ] +
+                  labels
+                      .mapIndexed(
+                          (index, value) => _getListItem(context, index))
+                      .toList())));
 }

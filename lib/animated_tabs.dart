@@ -50,7 +50,8 @@ class _AnimatedTabView {
 
 class ContainerPage extends StatefulWidget {
   final List<AnimatedTab> tabs;
-  ContainerPage({this.tabs});
+  final int highlight;
+  ContainerPage({this.tabs, this.highlight = -1});
 
   @override
   _ContainerPageState createState() => _ContainerPageState();
@@ -97,27 +98,36 @@ class _ContainerPageState extends State<ContainerPage>
     return Stack(children: transitions);
   }
 
+  void update(int index) => setState(() {
+        _navigationViews[_currentIndex].controller.reverse();
+        _currentIndex = index;
+        _navigationViews[_currentIndex].controller.forward();
+      });
+
   @override
   Widget build(BuildContext context) {
     final botNavBar = Container(
         color: Colors.transparent,
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.red,
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          items: _navigationViews
-              .map((navigationView) => navigationView.item)
-              .toList(),
-          currentIndex: _navigationViews.length - 1,
-          onTap: (int index) {
-            setState(() {
-              _navigationViews[_currentIndex].controller.reverse();
-              _currentIndex = index;
-              _navigationViews[_currentIndex].controller.forward();
-            });
-          },
-        ));
+        child: widget.highlight == -1
+            ? BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                currentIndex: _currentIndex,
+                items: _navigationViews
+                    .map((navigationView) => navigationView.item)
+                    .toList(),
+                onTap: update)
+            : BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                selectedItemColor: Colors.red,
+                currentIndex: widget.highlight,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                items: _navigationViews
+                    .map((navigationView) => navigationView.item)
+                    .toList(),
+                onTap: update));
 
     return Container(
       decoration: AppTheme.bg_decor_2() ??
