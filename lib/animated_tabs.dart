@@ -21,11 +21,9 @@ class _AnimatedTabView {
     this.tab,
     TickerProvider vsync,
   })  : item = BottomNavigationBarItem(
-    icon: tab.icon,
-    title: tab.title == "donate"
-        ? Text(tab.title.tr(), style: TextStyle(color: Colors.red))
-        : Text(tab.title.tr()),
-  ),
+          icon: tab.icon,
+          label: tab.title.tr(),
+        ),
         controller = AnimationController(
           duration: kThemeAnimationDuration,
           vsync: vsync,
@@ -104,13 +102,14 @@ class _ContainerPageState extends State<ContainerPage>
     final botNavBar = Container(
         color: Colors.transparent,
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.red,
           elevation: 0,
           backgroundColor: Colors.transparent,
           items: _navigationViews
               .map((navigationView) => navigationView.item)
               .toList(),
-          currentIndex: _currentIndex,
-          type: BottomNavigationBarType.fixed,
+          currentIndex: _navigationViews.length - 1,
           onTap: (int index) {
             setState(() {
               _navigationViews[_currentIndex].controller.reverse();
