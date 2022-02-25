@@ -9,3 +9,4 @@ export 'package:flutter_toolkit/restart_widget.dart';
 export 'package:flutter_toolkit/app_lang_dialog.dart';
 export 'package:flutter_toolkit/app_theme_dialog.dart';
 export 'package:flutter_toolkit/main_appbar.dart';
+export 'package:flutter_toolkit/selector_dialog.dart';
