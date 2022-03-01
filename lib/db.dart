@@ -8,7 +8,7 @@ import 'dart:async';
 import 'dart:io';
 
 class DB {
-  static Future prepare(String filename) async {
+  static Future prepare({String basename, String filename}) async {
     var databasesPath = await getDatabasesPath();
     var path = join(databasesPath, filename);
 
@@ -18,7 +18,7 @@ class DB {
       await Directory(dirname(path)).create(recursive: true);
     } catch (_) {}
 
-    ByteData data = await rootBundle.load(join("assets/db", filename));
+    ByteData data = await rootBundle.load(join(basename, filename));
     List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
     await File(path).writeAsBytes(bytes, flush: true);
