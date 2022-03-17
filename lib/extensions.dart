@@ -14,8 +14,7 @@ extension ExtendedIterable<E> on Iterable<E> {
 }
 
 extension ShowWidget on Widget {
-  Future push(BuildContext context) =>
-      Navigator.of(context).push(MaterialPageRoute(
+  Future push(BuildContext context) => Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => this,
       ));
 
@@ -24,10 +23,15 @@ extension ShowWidget on Widget {
         builder: (context) => this,
       ));
 
-  Future<T> show<T>(BuildContext context, {canDismiss = true}) => showDialog<T>(
-      barrierDismissible: canDismiss, context: context, builder: (_) => this);
+  Future<T> show<T>(BuildContext context, {canDismiss = true}) =>
+      showDialog<T>(barrierDismissible: canDismiss, context: context, builder: (_) => this);
 }
 
 extension Capitalize on String {
   String capitalize() => this[0].toUpperCase() + this.substring(1);
+}
+
+extension ScreenDimensions on BuildContext {
+  double get screenWidth => MediaQuery.of(this).size.width;
+  double get screenHeight => MediaQuery.of(this).size.height;
 }

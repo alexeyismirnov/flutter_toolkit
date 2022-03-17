@@ -49,7 +49,7 @@ class AppTheme {
                       color: Colors.white,
                     ),
                 backgroundColor: Colors.grey.shade800),
-            secondaryHeaderColor: const Color(0xff804000),
+            secondaryHeaderColor:  const Color(0xffe9c79a),
             brightness: Brightness.dark);
         break;
     }

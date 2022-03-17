@@ -10,14 +10,13 @@ class ConfigParam<T> {
 
   String prefKey;
 
-  static initSharedParams() async {
+  static initSharedParams({double initFontSize = 20.0}) async {
     prefs = await SharedPreferences.getInstance();
 
-    fontSize = ConfigParam<double>('fontSize', initValue: 20.0);
+    fontSize = ConfigParam<double>('fontSize', initValue: initFontSize);
 
     bgcolor = ConfigParam<ThemeType>('bgcolor',
-        initValue: SchedulerBinding.instance.window.platformBrightness ==
-            Brightness.dark
+        initValue: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
             ? ThemeType.dark
             : ThemeType.parchment);
 
