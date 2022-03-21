@@ -7,10 +7,11 @@ import 'dart:core';
 import 'dart:async';
 import 'dart:io';
 
+import 'global_path.dart';
+
 class DB {
   static Future prepare({String basename, String filename}) async {
-    var databasesPath = await getDatabasesPath();
-    var path = join(databasesPath, filename);
+    var path = join(GlobalPath.databases, filename);
 
     await deleteDatabase(path);
 
@@ -25,8 +26,7 @@ class DB {
   }
 
   static Future<Database> open(String filename) async {
-    var databasesPath = await getDatabasesPath();
-    var path = join(databasesPath, filename);
+    var path = join(GlobalPath.databases, filename);
     var db = await openDatabase(path, readOnly: true);
 
     return db;
