@@ -22,11 +22,12 @@ class DB {
     ByteData data = await rootBundle.load(join(basename, filename));
     List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
-    await File(path).writeAsBytes(bytes, flush: true);
+    final file = File(path);
+    await file.writeAsBytes(bytes, flush: true);
   }
 
-  static Future<Database> open(String filename) async {
-    var path = join(GlobalPath.databases, filename);
+  static Future<Database> open(String filename, {String dirname}) async {
+    var path = join(dirname ?? GlobalPath.databases, filename);
     var db = await openDatabase(path, readOnly: true);
 
     return db;
