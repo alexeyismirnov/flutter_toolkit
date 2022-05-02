@@ -10,6 +10,10 @@ class AppTheme {
     switch (theme) {
       case ThemeType.parchment:
         return ThemeData(
+            sliderTheme: SliderThemeData(
+                activeTrackColor: const Color(0xffedd0ab),
+                inactiveTrackColor:Colors.grey.shade400 ,
+                thumbColor: const Color(0xffdfa66d)),
             appBarTheme: AppBarTheme(
                 iconTheme: IconThemeData(
                   color: Colors.black, //change your color here
@@ -28,6 +32,10 @@ class AppTheme {
 
       case ThemeType.bright:
         return ThemeData(
+            sliderTheme: SliderThemeData(
+                activeTrackColor: const Color(0xffedd0ab),
+                inactiveTrackColor:Colors.grey.shade400 ,
+                thumbColor: const Color(0xffdfa66d)),
             appBarTheme: AppBarTheme(
                 iconTheme: IconThemeData(
                   color: Colors.black, //change your color here
@@ -49,7 +57,7 @@ class AppTheme {
                       color: Colors.white,
                     ),
                 backgroundColor: Colors.grey.shade800),
-            secondaryHeaderColor:  const Color(0xffe9c79a),
+            secondaryHeaderColor: const Color(0xffe9c79a),
             brightness: Brightness.dark);
         break;
     }
