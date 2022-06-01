@@ -13,3 +13,6 @@ export 'package:flutter_toolkit/selector_dialog.dart';
 export 'package:flutter_toolkit/db.dart';
 export 'package:flutter_toolkit/global_path.dart';
 export 'font_size_dialog.dart';
+export 'card_view.dart';
+
+
