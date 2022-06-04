@@ -3,12 +3,18 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_toolkit/app_theme.dart';
+import 'package:rxdart/rxdart.dart';
+
+import 'dart:async';
+
+typedef void SubscriptionHandler<T>(T val);
 
 class ConfigParam<T> {
   static SharedPreferences prefs;
   static var fontSize, bgcolor, langSelected;
 
   String prefKey;
+  final subject = PublishSubject<T>();
 
   static initSharedParams({double initFontSize = 20.0}) async {
     prefs = await SharedPreferences.getInstance();
@@ -57,5 +63,9 @@ class ConfigParam<T> {
       prefs.setInt(prefKey, (val as ThemeType).index);
     else
       prefs.setStringList(prefKey, val as List<String>);
+
+    subject.add(val);
   }
+
+  StreamSubscription onChange(SubscriptionHandler<T> handler) => subject.stream.listen(handler);
 }
