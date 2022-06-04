@@ -17,6 +17,9 @@ dependencies:
   firebase_analytics: ^8.3.4
   path_provider: ^2.0.9
   rxdart: ^0.18.1
+  after_init: ^0.1.2
+  jiffy: ^5.0.0
+  quiver: ^3.0.1+1
 
 dev_dependencies:
   flutter_test:
