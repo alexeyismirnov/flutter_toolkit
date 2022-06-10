@@ -68,7 +68,7 @@ class MonthViewState extends State<MonthView> {
 
     final firstDayOfWeek = DateFormat.EEEE(config.lang).dateSymbols.FIRSTDAYOFWEEK + 1;
 
-    final monthStart = DateTime(date.year, date.month, 1);
+    final monthStart = DateTime.utc(date.year, date.month, 1);
     final startGap = (monthStart.weekday < firstDayOfWeek)
         ? 7 - (firstDayOfWeek - monthStart.weekday)
         : monthStart.weekday - firstDayOfWeek;
@@ -79,6 +79,6 @@ class MonthViewState extends State<MonthView> {
         children: List<Widget>.generate(
                 startGap, (_) => SizedBox(width: config.cellWidth, height: config.cellHeight)) +
             List<Widget>.generate(
-                totalDays, (i) => cellBuilder(DateTime(date.year, date.month, i + 1))));
+                totalDays, (i) => cellBuilder(DateTime.utc(date.year, date.month, i + 1))));
   }
 }

@@ -62,12 +62,13 @@ class _MonthContainerState extends State<MonthContainer> {
                       controller: _controller,
                       onPageChanged: (page) => updateTitle(page),
                       itemBuilder: (BuildContext context, int index) {
-                        final currentDate =
+                        final cd =
                             Jiffy(widget.initialDate).add(months: index - initialPage).dateTime;
 
                         return Align(
                             alignment: Alignment.topCenter,
-                            child: MonthView(currentDate, cellBuilder: widget.cellBuilder));
+                            child: MonthView(DateTime.utc(cd.year, cd.month, cd.day),
+                                cellBuilder: widget.cellBuilder));
                       })),
             ]));
   }
