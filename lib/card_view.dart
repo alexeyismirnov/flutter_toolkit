@@ -18,7 +18,7 @@ class SimpleCard extends StatelessWidget {
       content1 = SizedBox(
         height: 150,
         child: Image.asset(
-          "assets/images/$image",
+          image,
           fit: BoxFit.contain,
         ),
       );
@@ -35,7 +35,7 @@ class SimpleCard extends StatelessWidget {
       content1 = SizedBox(
         width: 100,
         child: Image.asset(
-          "assets/images/$image",
+          image,
           fit: BoxFit.contain,
         ),
       );

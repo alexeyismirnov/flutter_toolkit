@@ -13,10 +13,10 @@ dependencies:
   shared_preferences: any
   auto_size_text: ^3.0.0
   sqflite: ^2.0.2
-  firebase_core: ^1.5.0
-  firebase_analytics: ^8.3.4
+  firebase_core: ^1.20.0
+  firebase_analytics: ^9.3.0
   path_provider: ^2.0.9
-  rxdart: ^0.18.1
+  rxdart: ^0.27.5
   after_init: ^0.1.2
   jiffy: ^5.0.0
   quiver: ^3.0.1+1
