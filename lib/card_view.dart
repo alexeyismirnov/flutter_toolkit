@@ -62,7 +62,7 @@ class CardWithTitle extends StatelessWidget {
   final String title;
   final Widget content;
 
-  const CardWithTitle({required Key key, required this.title, required this.content})
+  const CardWithTitle({Key? key, required this.title, required this.content})
       : super(key: key);
 
   @override
