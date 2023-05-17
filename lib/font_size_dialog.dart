@@ -28,7 +28,7 @@ class FontSizeDialogState extends State<FontSizeDialog> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text('font_size'.tr(), style: Theme.of(context).textTheme.headline6)
+                          Text('font_size'.tr(), style: Theme.of(context).textTheme.titleLarge)
                         ])),
                 Slider(
                   value: fontSize,
@@ -45,9 +45,9 @@ class FontSizeDialogState extends State<FontSizeDialog> {
         actions: <Widget>[
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-                primary: Colors.grey.shade300, padding: const EdgeInsets.all(10.0)),
-            child:
-                Text('ОК', style: Theme.of(context).textTheme.button.copyWith(color: Colors.black)),
+                backgroundColor: Colors.grey.shade300, padding: const EdgeInsets.all(10.0)),
+            child: Text('ОК',
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.black)),
             onPressed: () {
               ConfigParam.fontSize.set(fontSize);
               Navigator.of(context).pop(null);

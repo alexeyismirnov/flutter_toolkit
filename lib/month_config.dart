@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:after_init/after_init.dart';
 
 import 'extensions.dart';
 
@@ -10,11 +9,11 @@ class MonthViewConfig extends StatefulWidget {
   final bool highlightToday;
   final Widget child;
 
-  MonthViewConfigState myState;
+  late MonthViewConfigState myState;
 
   MonthViewConfig(
-      {this.lang,
-        this.child,
+      {required this.lang,
+        required this.child,
         this.shortLabels = false,
         this.sharing = false,
         this.highlightToday = true});
@@ -25,19 +24,21 @@ class MonthViewConfig extends StatefulWidget {
     return myState;
   }
 
-  static MonthViewConfigState of(BuildContext context) =>
+  static MonthViewConfigState? of(BuildContext context) =>
       context.findAncestorWidgetOfExactType<MonthViewConfig>()?.myState;
 }
 
-class MonthViewConfigState extends State<MonthViewConfig> with AfterInitMixin<MonthViewConfig> {
-  double cellWidth, cellHeight, containerWidth;
+class MonthViewConfigState extends State<MonthViewConfig> {
+  late double cellWidth, cellHeight, containerWidth;
   bool get shortLabels => widget.shortLabels;
   String get lang => widget.lang;
   bool get highlightToday => widget.highlightToday;
   bool get sharing => widget.sharing;
 
   @override
-  void didInitState() {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
     final isTablet = widget.sharing ? false : context.isTablet;
 
     if (isTablet) {

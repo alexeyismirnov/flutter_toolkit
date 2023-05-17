@@ -8,18 +8,18 @@ class AnimatedTab {
   final String title;
   final Widget content;
 
-  AnimatedTab({this.icon, this.title, this.content});
+  AnimatedTab({required this.icon, required this.title, required this.content});
 }
 
 class _AnimatedTabView {
   final AnimatedTab tab;
   final BottomNavigationBarItem item;
   final AnimationController controller;
-  CurvedAnimation _animation;
+  late CurvedAnimation _animation;
 
   _AnimatedTabView({
-    this.tab,
-    TickerProvider vsync,
+    required this.tab,
+    required TickerProvider vsync,
   })  : item = BottomNavigationBarItem(
           icon: tab.icon,
           label: tab.title.tr(),
@@ -51,7 +51,7 @@ class _AnimatedTabView {
 class ContainerPage extends StatefulWidget {
   final List<AnimatedTab> tabs;
   final int highlight;
-  ContainerPage({this.tabs, this.highlight = -1});
+  ContainerPage({required this.tabs, this.highlight = -1});
 
   @override
   _ContainerPageState createState() => _ContainerPageState();
@@ -60,7 +60,7 @@ class ContainerPage extends StatefulWidget {
 class _ContainerPageState extends State<ContainerPage>
     with TickerProviderStateMixin {
   int _currentIndex = 0;
-  List<_AnimatedTabView> _navigationViews;
+  late List<_AnimatedTabView> _navigationViews;
   List<FadeTransition> transitions = [];
 
   @override

@@ -1,5 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_toolkit/app_theme.dart';
@@ -10,7 +9,7 @@ import 'dart:async';
 typedef void SubscriptionHandler<T>(T val);
 
 class ConfigParam<T> {
-  static SharedPreferences prefs;
+  static late SharedPreferences prefs;
   static var fontSize, bgcolor, langSelected;
 
   String prefKey;
@@ -22,14 +21,14 @@ class ConfigParam<T> {
     fontSize = ConfigParam<double>('fontSize', initValue: initFontSize);
 
     bgcolor = ConfigParam<ThemeType>('bgcolor',
-        initValue: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+        initValue: WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark
             ? ThemeType.dark
             : ThemeType.parchment);
 
     langSelected = ConfigParam<bool>('lang_init', initValue: false);
   }
 
-  ConfigParam(this.prefKey, {T initValue}) {
+  ConfigParam(this.prefKey, {required T initValue}) {
     if (initValue != null && !exists) set(initValue);
   }
 
@@ -45,7 +44,7 @@ class ConfigParam<T> {
     else if (T == String)
       return prefs.getString(prefKey) as T;
     else if (T == ThemeType)
-      return ThemeType.values[prefs.getInt(prefKey)] as T;
+      return ThemeType.values[prefs.getInt(prefKey) ?? 0] as T;
     else
       return prefs.getStringList(prefKey) as T;
   }

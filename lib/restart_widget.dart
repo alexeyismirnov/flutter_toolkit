@@ -9,13 +9,13 @@ import 'app_theme.dart';
 
 class RestartWidget extends StatefulWidget {
   static restartApp(BuildContext context) {
-    final _RestartWidgetState state =
+    final _RestartWidgetState? state =
         context.findAncestorStateOfType<_RestartWidgetState>();
-    state.restartApp();
+    state?.restartApp();
   }
 
   final Widget content;
-  final FirebaseAnalytics analytics;
+  final FirebaseAnalytics? analytics;
 
   RestartWidget(this.content, {this.analytics});
 
@@ -45,7 +45,7 @@ class _RestartWidgetState extends State<RestartWidget> {
       home: widget.content,
       navigatorObservers: [
         if (widget.analytics != null)
-          FirebaseAnalyticsObserver(analytics: widget.analytics)
+          FirebaseAnalyticsObserver(analytics: widget.analytics!)
       ],
       theme: AppTheme.getThemeData(context),
       debugShowCheckedModeBanner: false,

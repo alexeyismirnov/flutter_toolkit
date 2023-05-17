@@ -7,7 +7,7 @@ class SelectorDialog extends StatelessWidget {
   final String title;
   final List<Widget> content;
 
-  SelectorDialog({this.title, this.content});
+  SelectorDialog({required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -27,7 +27,7 @@ class SelectorDialog extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Text(title.tr().toUpperCase(),
-                                  style: Theme.of(context).textTheme.button)
+                                  style: Theme.of(context).textTheme.labelLarge)
                             ])),
                   ] +
                   content)));

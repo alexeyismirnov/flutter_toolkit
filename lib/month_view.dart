@@ -8,7 +8,7 @@ import 'month_config.dart';
 class WeekdaysView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var config = MonthViewConfig.of(context);
+    var config = MonthViewConfig.of(context)!;
     var weekdays = <String>[];
 
     if (config.lang == 'en') {
@@ -23,7 +23,8 @@ class WeekdaysView extends StatelessWidget {
       weekdays = ["日", "一", "二", "三", "四", "五", "六"];
     }
 
-    Color textColor = config.sharing ? Colors.black : Theme.of(context).textTheme.titleLarge.color;
+    Color? textColor =
+        config.sharing ? Colors.black : Theme.of(context).textTheme.titleLarge?.color;
 
     return Row(
         mainAxisSize: MainAxisSize.max,
@@ -37,11 +38,11 @@ class WeekdaysView extends StatelessWidget {
                     minFontSize: 5,
                     textAlign: TextAlign.center,
                     style: config.shortLabels
-                        ? Theme.of(context).textTheme.titleLarge.copyWith(color: textColor)
+                        ? Theme.of(context).textTheme.titleLarge?.copyWith(color: textColor)
                         : Theme.of(context)
                             .textTheme
                             .labelMedium
-                            .copyWith(color: Theme.of(context).secondaryHeaderColor))))
+                            ?.copyWith(color: Theme.of(context).secondaryHeaderColor))))
             .toList());
   }
 }
@@ -52,7 +53,7 @@ class MonthView extends StatefulWidget {
   final DateTime date;
   final MonthCellCallback cellBuilder;
 
-  const MonthView(this.date, {this.cellBuilder});
+  const MonthView(this.date, {required this.cellBuilder});
 
   @override
   MonthViewState createState() => MonthViewState();
@@ -64,7 +65,7 @@ class MonthViewState extends State<MonthView> {
 
   @override
   Widget build(BuildContext context) {
-    final config = MonthViewConfig.of(context);
+    final config = MonthViewConfig.of(context)!;
 
     final firstDayOfWeek = DateFormat.EEEE(config.lang).dateSymbols.FIRSTDAYOFWEEK + 1;
 

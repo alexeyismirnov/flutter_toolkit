@@ -8,7 +8,8 @@ class SimpleCard extends StatelessWidget {
   final VoidCallback onTap;
   final bool vertical;
 
-  const SimpleCard({this.title, this.image, this.onTap, this.vertical = false});
+  const SimpleCard(
+      {required this.title, required this.image, required this.onTap, this.vertical = false});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class SimpleCard extends StatelessWidget {
       );
 
       content2 = Text(title.tr(),
-          textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline6);
+          textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleLarge);
 
       content = Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Center(child: content1),
@@ -41,7 +42,7 @@ class SimpleCard extends StatelessWidget {
       );
 
       content2 =
-          Text(title, style: Theme.of(context).textTheme.headline6, textAlign: TextAlign.center);
+          Text(title, style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.center);
 
       content = Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +62,8 @@ class CardWithTitle extends StatelessWidget {
   final String title;
   final Widget content;
 
-  const CardWithTitle({Key key, this.title, this.content}) : super(key: key);
+  const CardWithTitle({required Key key, required this.title, required this.content})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Card(
@@ -79,7 +81,7 @@ class CardWithTitle extends StatelessWidget {
                             child: AutoSizeText(title.tr().toUpperCase(),
                                 maxLines: 1,
                                 minFontSize: 5,
-                                style: Theme.of(context).textTheme.button)),
+                                style: Theme.of(context).textTheme.labelLarge)),
                       ])),
                   const Divider(color: Colors.black),
                   content

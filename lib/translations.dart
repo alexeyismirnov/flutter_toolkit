@@ -9,7 +9,7 @@ import 'dart:convert';
 
 class DirectoryAssetLoader extends AssetLoader {
   String basePath;
-  DirectoryAssetLoader({this.basePath});
+  DirectoryAssetLoader({required this.basePath});
 
   String getLocalePath(Locale locale) =>
       '$basePath/${locale.toStringWithSeparator(separator: "-")}/';

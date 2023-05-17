@@ -23,7 +23,7 @@ extension ShowWidget on Widget {
         builder: (context) => this,
       ));
 
-  Future<T> show<T>(BuildContext context, {canDismiss = true}) =>
+  Future<T?> show<T>(BuildContext context, {canDismiss = true}) =>
       showDialog<T>(barrierDismissible: canDismiss, context: context, builder: (_) => this);
 }
 

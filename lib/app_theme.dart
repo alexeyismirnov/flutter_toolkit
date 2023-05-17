@@ -18,7 +18,7 @@ class AppTheme {
                 iconTheme: IconThemeData(
                   color: Colors.black, //change your color here
                 ),
-                titleTextStyle: Theme.of(context).textTheme.headline6?.copyWith(
+                titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: Colors.black,
                     ),
                 backgroundColor: const Color(0xffe9c79a)),
@@ -27,8 +27,7 @@ class AppTheme {
             dialogBackgroundColor: Colors.orange.shade50,
             primaryColor: const Color(0xffe9c79a),
             secondaryHeaderColor: const Color(0xff804000),
-            accentColor: Colors.black54);
-        break;
+            hintColor: Colors.black54);
 
       case ThemeType.bright:
         return ThemeData(
@@ -40,30 +39,31 @@ class AppTheme {
                 iconTheme: IconThemeData(
                   color: Colors.black, //change your color here
                 ),
-                titleTextStyle: Theme.of(context).textTheme.headline6?.copyWith(
+                titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: Colors.black,
                     ),
                 backgroundColor: const Color(0xffe9c79a)),
             brightness: Brightness.light,
             primaryColor: const Color(0xffe9c79a),
             secondaryHeaderColor: const Color(0xff804000),
-            accentColor: Colors.black54);
-        break;
+            hintColor: Colors.black54);
 
       case ThemeType.dark:
         return ThemeData(
             appBarTheme: AppBarTheme(
-                titleTextStyle: Theme.of(context).textTheme.headline6?.copyWith(
+                titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: Colors.white,
                     ),
                 backgroundColor: Colors.grey.shade800),
             secondaryHeaderColor: const Color(0xffe9c79a),
             brightness: Brightness.dark);
-        break;
+
+      default:
+        return ThemeData();
     }
   }
 
-  static Decoration bg_decor_1() => ConfigParam.bgcolor.val() == ThemeType.parchment
+  static BoxDecoration? bg_decor_1() => ConfigParam.bgcolor.val() == ThemeType.parchment
       ? BoxDecoration(
           image: DecorationImage(
             image: AssetImage("lib/images/bg.jpg", package: "flutter_toolkit"),
@@ -72,7 +72,7 @@ class AppTheme {
         )
       : null;
 
-  static Decoration bg_decor_2() => ConfigParam.bgcolor.val() == ThemeType.parchment
+  static BoxDecoration? bg_decor_2() => ConfigParam.bgcolor.val() == ThemeType.parchment
       ? BoxDecoration(
           image: DecorationImage(
               image: AssetImage("lib/images/bg2.jpg", package: "flutter_toolkit"),
@@ -81,7 +81,7 @@ class AppTheme {
         )
       : null;
 
-  static Decoration bg_decor_3() => ConfigParam.bgcolor.val() == ThemeType.parchment
+  static BoxDecoration? bg_decor_3() => ConfigParam.bgcolor.val() == ThemeType.parchment
       ? BoxDecoration(
           image: DecorationImage(
           image: AssetImage("lib/images/bg3.jpg", package: "flutter_toolkit"),

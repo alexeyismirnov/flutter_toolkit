@@ -10,7 +10,7 @@ import 'dart:io';
 import 'global_path.dart';
 
 class DB {
-  static Future prepare({String basename, String filename}) async {
+  static Future prepare({required String basename, required String filename}) async {
     var path = join(GlobalPath.databases, filename);
 
     await deleteDatabase(path);
@@ -26,7 +26,7 @@ class DB {
     await file.writeAsBytes(bytes, flush: true);
   }
 
-  static Future<Database> open(String filename, {String dirname}) async {
+  static Future<Database> open(String filename, {String? dirname}) async {
     var path = join(dirname ?? GlobalPath.databases, filename);
     var db = await openDatabase(path, readOnly: true, singleInstance: false);
 

@@ -9,7 +9,7 @@ class MonthContainer extends StatefulWidget {
   final DateTime initialDate;
   final MonthCellCallback cellBuilder;
 
-  const MonthContainer(this.initialDate, {this.cellBuilder});
+  const MonthContainer(this.initialDate, {required this.cellBuilder});
 
   @override
   _MonthContainerState createState() => _MonthContainerState();
@@ -17,9 +17,8 @@ class MonthContainer extends StatefulWidget {
 
 class _MonthContainerState extends State<MonthContainer> {
   static const initialPage = 100000;
-  PageController _controller;
-
-  String title;
+  late PageController _controller;
+  late String title;
 
   @override
   void initState() {
@@ -30,17 +29,18 @@ class _MonthContainerState extends State<MonthContainer> {
   }
 
   void updateTitle([int index = initialPage]) {
-    final currentDate = Jiffy(widget.initialDate).add(months: index - initialPage);
+    final currentDate =
+        Jiffy.parseFromDateTime(widget.initialDate).add(months: index - initialPage);
 
     setState(() {
-      title = currentDate.format("LLLL yyyy").capitalize();
+      title = currentDate.format(pattern: "LLLL yyyy").capitalize();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     const spacer = SizedBox(height: 10);
-    final config = MonthViewConfig.of(context);
+    final config = MonthViewConfig.of(context)!;
 
     return Container(
         width: config.containerWidth,
@@ -62,8 +62,9 @@ class _MonthContainerState extends State<MonthContainer> {
                       controller: _controller,
                       onPageChanged: (page) => updateTitle(page),
                       itemBuilder: (BuildContext context, int index) {
-                        final cd =
-                            Jiffy(widget.initialDate).add(months: index - initialPage).dateTime;
+                        final cd = Jiffy.parseFromDateTime(widget.initialDate)
+                            .add(months: index - initialPage)
+                            .dateTime;
 
                         return Align(
                             alignment: Alignment.topCenter,
