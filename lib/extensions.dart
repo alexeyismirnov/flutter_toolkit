@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-extension ExtendedIterable<E> on Iterable<E> {
-  void forEachIndexed(void Function(E e, int i) f) {
-    var i = 0;
-    forEach((e) => f(e, i++));
-  }
-}
-
 extension ShowWidget on Widget {
   Future push(BuildContext context) => Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => this,
