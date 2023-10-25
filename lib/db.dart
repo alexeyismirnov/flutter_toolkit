@@ -28,7 +28,7 @@ class DB {
 
   static Future<Database> open(String filename, {String? dirname}) async {
     var path = join(dirname ?? GlobalPath.databases, filename);
-    var db = await openDatabase(path, readOnly: true, singleInstance: false);
+    var db = await openDatabase(path, readOnly: true);
 
     return db;
   }
