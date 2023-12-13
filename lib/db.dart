@@ -10,19 +10,19 @@ import 'dart:io';
 import 'global_path.dart';
 
 class DB {
-  static Future prepare({required String basename, required String filename}) async {
-    var path = join(GlobalPath.databases, filename);
-
-    await deleteDatabase(path);
+  static Future prepare({required String path}) async {
+    final filename = basename(path);
+    final destPath = join(GlobalPath.databases, filename);
+    await deleteDatabase(destPath);
 
     try {
-      await Directory(dirname(path)).create(recursive: true);
+      await Directory(dirname(destPath)).create(recursive: true);
     } catch (_) {}
 
-    ByteData data = await rootBundle.load(join(basename, filename));
+    ByteData data = await rootBundle.load(path);
     List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
-    final file = File(path);
+    final file = File(destPath);
     await file.writeAsBytes(bytes, flush: true);
   }
 
