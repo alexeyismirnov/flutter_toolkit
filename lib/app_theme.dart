@@ -12,7 +12,7 @@ class AppTheme {
         return ThemeData(
             sliderTheme: SliderThemeData(
                 activeTrackColor: const Color(0xffedd0ab),
-                inactiveTrackColor:Colors.grey.shade400 ,
+                inactiveTrackColor: Colors.grey.shade400,
                 thumbColor: const Color(0xffdfa66d)),
             appBarTheme: AppBarTheme(
                 iconTheme: IconThemeData(
@@ -23,7 +23,8 @@ class AppTheme {
                     ),
                 backgroundColor: const Color(0xffe9c79a)),
             brightness: Brightness.light,
-            cardColor: Colors.orange.shade50,
+            // cardColor: Colors.orange.shade50,
+            cardTheme: CardTheme(color: Colors.orange.shade50),
             dialogBackgroundColor: Colors.orange.shade50,
             primaryColor: const Color(0xffe9c79a),
             secondaryHeaderColor: const Color(0xff804000),
@@ -33,7 +34,7 @@ class AppTheme {
         return ThemeData(
             sliderTheme: SliderThemeData(
                 activeTrackColor: const Color(0xffedd0ab),
-                inactiveTrackColor:Colors.grey.shade400 ,
+                inactiveTrackColor: Colors.grey.shade400,
                 thumbColor: const Color(0xffdfa66d)),
             appBarTheme: AppBarTheme(
                 iconTheme: IconThemeData(

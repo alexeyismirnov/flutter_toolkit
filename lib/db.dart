@@ -33,3 +33,9 @@ class DB {
     return db;
   }
 }
+
+extension SqfliteExt on Sqflite {
+  static String? firstStringValue(List<Map<String, Object?>> list) =>
+      list.firstOrNull?.values.firstOrNull.toString();
+}
+

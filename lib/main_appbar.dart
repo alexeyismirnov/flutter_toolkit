@@ -58,7 +58,7 @@ class MainAppbar extends StatelessWidget {
       title: AutoSizeText(title.tr(),
           maxLines: maxLines,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headline6),
+          style: Theme.of(context).textTheme.titleLarge),
       centerTitle: true,
       actions: showActions ? [_getActions(context)] : []);
 }
