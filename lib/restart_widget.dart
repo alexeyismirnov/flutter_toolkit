@@ -8,6 +8,8 @@ import 'package:firebase_analytics/observer.dart';
 import 'app_theme.dart';
 
 class RestartWidget extends StatefulWidget {
+  static Function? onBeforeRestart;
+  
   static restartApp(BuildContext context) {
     final _RestartWidgetState? state = context.findAncestorStateOfType<_RestartWidgetState>();
     state?.restartApp();
@@ -26,10 +28,16 @@ class _RestartWidgetState extends State<RestartWidget> {
   Key key = UniqueKey();
 
   void restartApp() {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      this.setState(() {
-        key = UniqueKey();
-      });
+    Future.delayed(const Duration(milliseconds: 500), () async {
+      // Call the onBeforeRestart callback if set (e.g., to flush cache)
+      if (RestartWidget.onBeforeRestart != null) {
+        await RestartWidget.onBeforeRestart!();
+      }
+      if (mounted) {
+        setState(() {
+          key = UniqueKey();
+        });
+      }
     });
   }
 
