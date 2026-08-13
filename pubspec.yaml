@@ -3,22 +3,22 @@ description: Common code for my Flutter projects
 version: 1.0.0
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=3.12.0 <4.0.0'
+  flutter: ">=3.44.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  easy_localization: ^3.0.3
-  shared_preferences: ^2.2.2
+  easy_localization: ^3.0.8
+  shared_preferences: ^2.5.5
   auto_size_text: ^3.0.0
-  sqflite: ^2.3.0
-  firebase_core: ^4.0.0
-  firebase_analytics: ^12.0.0
-  path_provider: ^2.1.1
-  rxdart: ^0.27.7
-  jiffy: ^6.2.1
-  quiver: ^3.2.1
+  sqflite: ^2.4.3
+  firebase_core: ^4.13.0
+  firebase_analytics: ^12.4.6
+  path_provider: ^2.1.6
+  rxdart: ^0.28.0
+  jiffy: ^6.4.5
+  quiver: ^3.2.2
 
 dev_dependencies:
   flutter_test:
