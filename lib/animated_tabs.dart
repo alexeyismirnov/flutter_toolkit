@@ -132,10 +132,33 @@ class _ContainerPageState extends State<ContainerPage>
     return Container(
       decoration: AppTheme.bg_decor_2() ??
           BoxDecoration(color: Theme.of(context).canvasColor),
-      child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Center(child: _buildTransitionsStack()),
-          bottomNavigationBar: botNavBar),
+      child: LayoutBuilder(builder: (context, constraints) {
+        // On wide screens (tablets, desktop) use a NavigationRail instead of
+        // the bottom tab bar. Phone behavior is unchanged.
+        final useRail = widget.highlight == -1 && constraints.maxWidth >= 840;
+
+        if (useRail) {
+          return Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Row(children: [
+                NavigationRail(
+                    selectedIndex: _currentIndex,
+                    onDestinationSelected: update,
+                    labelType: NavigationRailLabelType.none,
+                    destinations: widget.tabs
+                        .map((t) => NavigationRailDestination(
+                            icon: t.icon, label: Text(t.title.tr())))
+                        .toList()),
+                const VerticalDivider(width: 1, thickness: 1),
+                Expanded(child: _buildTransitionsStack())
+              ]));
+        }
+
+        return Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Center(child: _buildTransitionsStack()),
+            bottomNavigationBar: botNavBar);
+      }),
     );
   }
 }

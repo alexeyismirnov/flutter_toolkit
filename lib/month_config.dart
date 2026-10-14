@@ -9,14 +9,21 @@ class MonthViewConfig extends StatefulWidget {
   final bool highlightToday;
   final Widget child;
 
+  /// Optional explicit sizing (e.g. for the tablet month rail). When null,
+  /// sizes are derived from the device type as before.
+  final double? cellWidth;
+  final double? containerWidth;
+
   late MonthViewConfigState myState;
 
   MonthViewConfig(
       {required this.lang,
-        required this.child,
-        this.shortLabels = false,
-        this.sharing = false,
-        this.highlightToday = true});
+      required this.child,
+      this.shortLabels = false,
+      this.sharing = false,
+      this.highlightToday = true,
+      this.cellWidth,
+      this.containerWidth});
 
   @override
   MonthViewConfigState createState() {
@@ -39,14 +46,19 @@ class MonthViewConfigState extends State<MonthViewConfig> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final isTablet = widget.sharing ? false : context.isTablet;
-
-    if (isTablet) {
-      cellWidth = 70.0;
-      containerWidth = 510.0;
+    if (widget.cellWidth != null && widget.containerWidth != null) {
+      cellWidth = widget.cellWidth!;
+      containerWidth = widget.containerWidth!;
     } else {
-      cellWidth = 40.0;
-      containerWidth = 300.0;
+      final isTablet = widget.sharing ? false : context.isTablet;
+
+      if (isTablet) {
+        cellWidth = 70.0;
+        containerWidth = 510.0;
+      } else {
+        cellWidth = 40.0;
+        containerWidth = 300.0;
+      }
     }
 
     cellHeight = cellWidth;
