@@ -14,8 +14,6 @@ class MonthViewConfig extends StatefulWidget {
   final double? cellWidth;
   final double? containerWidth;
 
-  late MonthViewConfigState myState;
-
   MonthViewConfig(
       {required this.lang,
       required this.child,
@@ -26,13 +24,10 @@ class MonthViewConfig extends StatefulWidget {
       this.containerWidth});
 
   @override
-  MonthViewConfigState createState() {
-    myState = MonthViewConfigState();
-    return myState;
-  }
+  MonthViewConfigState createState() => MonthViewConfigState();
 
   static MonthViewConfigState? of(BuildContext context) =>
-      context.findAncestorWidgetOfExactType<MonthViewConfig>()?.myState;
+      context.findAncestorStateOfType<MonthViewConfigState>();
 }
 
 class MonthViewConfigState extends State<MonthViewConfig> {
